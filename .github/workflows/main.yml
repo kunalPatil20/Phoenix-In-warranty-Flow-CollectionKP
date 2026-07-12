@@ -47,5 +47,28 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN}}
           publish_dir: newman/
+
+      - name: Send Email Notification
+        if: always()
+        uses: dawidd6/action-send-mail@v18
+        with:
+            server_address: smtp.gmail.com
+            server_port: 465
+            username : ${{ secrets.EMAIL_USERNAME }}
+            password : ${{ secrets.EMAIL_PASSWORD }}
+            subject  : Phoenix Inwarranty Flow Test Execution Notification
+            to : thekunalpatil20@gmail.com
+            from : ${{ secrets.EMAIL_USERNAME }}
+            body : |
+                  Hi,
+                  Phoenix Inwarranty Flow Test has been Executed 
+                  The report has been published and URL is
+                  https://kunalpatil20.github.io/Phoenix-In-warranty-Flow-CollectionKP/
+                  
+            
+            
+            
+            
+          
           
       
